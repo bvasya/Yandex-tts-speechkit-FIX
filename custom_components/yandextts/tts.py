@@ -17,7 +17,7 @@ YANDEX_API_URL = "https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize"
 
 SUPPORT_LANGUAGES = ["ru-RU", "en-US", "tr-TR"]
 
-SUPPORT_CODECS = ["lpcm", "oggopus"]
+SUPPORT_CODECS = ["lpcm", "oggopus","mp3"]
 
 SUPPORT_VOICES = [
     "jane",
@@ -123,7 +123,7 @@ class YandexSpeechKitProvider(Provider):
         options = options or {}
 
         try:
-            with async_timeout.timeout(10):
+            async with asyncio.timeout(10):
                 url_param = {
                     "text": message,
                     "lang": actual_language,
